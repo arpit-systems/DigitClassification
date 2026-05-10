@@ -12,20 +12,11 @@ jobs:
 
     strategy:
       matrix:
-        python-version: [3.10]
+        python-version: [3.14.0]
 
     steps:
+      - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
 
-      - run: echo "Workflow triggered"
+      - run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub!"
 
-      - name: Check out repository code
-        uses: actions/checkout@v4
-
-      - name: List files
-        run: ls -R ${{ github.workspace }}
-
-      - name: Install dep
-        run: pip3 install --no-cache-dir -r requirements.txt
-
-      - name: Run experiment
-        run: python plot_digits_classification.py
+      - run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
