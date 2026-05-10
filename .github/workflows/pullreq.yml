@@ -19,4 +19,14 @@ jobs:
 
       - run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub!"
 
+<<<<<<< HEAD
       - run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+=======
+      - run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+
+      - name: Install dep
+        run: pip3 install --no-cache-dir -r requirements.txt
+
+      - name: Run tests
+        run: pytest
+>>>>>>> f104afb (added pytest workflow and tests)
