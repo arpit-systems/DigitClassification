@@ -1,4 +1,6 @@
 import matplotlib.pyplot as plt
+from joblib import dump, load
+from sklearn.tree import DecisionTreeClassifier
 from sklearn import datasets, metrics, svm
 from sklearn.model_selection import train_test_split
 
@@ -25,11 +27,26 @@ def train_test_model(X_train, X_test, y_train):
 
     clf = svm.SVC(gamma=0.001)
 
+    tree_clf = DecisionTreeClassifier()
+
     clf.fit(X_train, y_train)
+
+    tree_clf.fit(X_train, y_train)
+
+    dump(clf, "digit_model.joblib")
 
     predicted = clf.predict(X_test)
 
-    return predicted, clf
+    tree_predicted = tree_clf.predict(X_test)
+
+    return predicted, clf, tree_predicted, tree_clf
+
+
+def load_saved_model():
+
+    model = load("digit_model.joblib")
+
+    return model
 
 
 def performance_model(X_test, y_test, predicted, clf):
